@@ -1,0 +1,4 @@
+/.venv/
+/.idea/
+hashbot/image_hashes.db
+config.py
