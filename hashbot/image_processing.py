@@ -83,7 +83,7 @@ async def process_image(image_path, message_id, chat_id, bot):
         if existing_date:
             formatted_date = add_hours_to_datetime(existing_date, 3)
             formatted_chat_id = format_chat_id(chat_id)
-            result_message = f"Совпадение изображения, дата: {formatted_date}, разница в битах: {num_bits_diff}\nhttps://t.me/c/{formatted_chat_id}/{existing_message_id}"
+            result_message = f"Ураха момент, дата: {formatted_date}, разница в битах: {num_bits_diff}\nhttps://t.me/c/{formatted_chat_id}/{existing_message_id}"
 
             # Отправляем ответ на найденное сообщение в групповом чате
             await bot.send_message(chat_id, result_message, reply_to_message_id=existing_message_id)

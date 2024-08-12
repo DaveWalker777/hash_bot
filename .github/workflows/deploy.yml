@@ -1,0 +1,32 @@
+name: Deploy Bot
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.hashbot }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 95.164.113.115 >> ~/.ssh/known_hosts
+
+      - name: Deploy to server
+        run: |
+          ssh -o StrictHostKeyChecking=no root@95.164.113.115 << 'EOF'
+            cd /home/dave/hashbot
+            git pull origin master
+            source venv/bin/activate
+            pip install -r requirements.txt
+            sudo systemctl restart hashbot
+          EOF
+
