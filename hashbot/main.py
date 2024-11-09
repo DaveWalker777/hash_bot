@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher()
-
+# test
 
 @dp.message(lambda message: message.photo)
 async def handle_photo(message: types.Message):

@@ -18,11 +18,11 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.hashbot }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H 95.164.113.115 >> ~/.ssh/known_hosts
+          ssh-keyscan -H 213.108.23.32 >> ~/.ssh/known_hosts
 
       - name: Deploy to server
         run: |
-          ssh -o StrictHostKeyChecking=no root@95.164.113.115 << 'EOF'
+          ssh -o StrictHostKeyChecking=no root@213.108.23.32 << 'EOF'
             cd /home/dave/hashbot
             git pull origin master
             source venv/bin/activate
